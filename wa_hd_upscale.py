@@ -1,13 +1,12 @@
 """
 WhatsApp HD Upscaler
-====================
-Drop this exe next to your images and run it.
-It upscales every image so the LONG side is at least 2560 px (Full HD+),
+
+It upscales every image so the LONG side is at least 2560 px (FHD+),
 well above WhatsApp's HD threshold so the HD button always appears.
 
 Originals are backed up to ./wa_originals/ before any change.
 Already-large-enough images are skipped.
-Files are always saved back to their ORIGINAL extension – no conversion.
+Files are saved to their original extension whenever possible
 """
 
 import sys
@@ -15,7 +14,6 @@ import shutil
 from pathlib import Path
 from PIL import Image, ImageFilter
 
-# ── config ────────────────────────────────────────────────────────────────────
 TARGET_LONG_SIDE  = 2560   # px – long side target (well above WhatsApp HD threshold of ~1600px)
 SHARPEN_AFTER     = False   # light unsharp mask after upscale
 JPEG_QUALITY      = 95     # 1-95; raised to 95 to preserve quality at 4K
@@ -58,7 +56,6 @@ SUPPORTED_EXTS = {
     ".im",
 }
 
-# Maps extension → (pillow_save_format, required_mode_or_None, save_kwargs)
 # Always write back to the SAME file with the SAME extension.
 FORMAT_MAP = {
     ".jpg":  ("JPEG", "RGB",  {"quality": JPEG_QUALITY}),
@@ -97,8 +94,6 @@ FORMAT_MAP = {
     ".dds":  ("DDS",  None,   {}),
     ".xbm":  ("XBM",  None,   {}),
 }
-# ─────────────────────────────────────────────────────────────────────────────
-
 
 def upscale_image(src: Path, backup_dir: Path) -> str:
     try:
@@ -137,11 +132,11 @@ def upscale_image(src: Path, backup_dir: Path) -> str:
         else:
             img = img.convert(target_mode)
 
-    # Upscale with Bicubic resampling (fast, looks great at this resolution)
+    # Upscale with Bicubic resampling because it is fast
     img = img.resize((new_w, new_h), Image.BICUBIC)
 
 
-    # Save back to the exact same path / extension
+    # Save back to the exact same path and extension
     try:
         img.save(src, save_fmt, **save_kw)
     except Exception:
