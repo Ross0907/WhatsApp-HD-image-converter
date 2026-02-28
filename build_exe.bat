@@ -1,10 +1,4 @@
 @echo off
-:: ============================================================
-:: build_exe.bat  -  creates wa_hd_upscale.exe in this folder
-:: Run this ONCE on your Windows PC; you only need Python once.
-:: The resulting .exe needs nothing installed - drop it anywhere.
-:: ============================================================
-
 echo Installing/updating required packages...
 pip install pillow pyinstaller --upgrade --quiet
 if errorlevel 1 (
@@ -27,10 +21,8 @@ if errorlevel 1 (
 if exist dist\wa_hd_upscale.exe (
     copy /Y dist\wa_hd_upscale.exe wa_hd_upscale.exe
     echo.
-    echo ============================================================
-    echo  SUCCESS!  wa_hd_upscale.exe is ready in this folder.
-    echo  Copy it next to any batch of images and double-click it.
-    echo ============================================================
+    echo  wa_hd_upscale.exe was generated successfully
+    echo  Copy it next to any batch of images and execute it to upscale to WA HD threshold.
 ) else (
     echo Could not find built exe.
 )
