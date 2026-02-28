@@ -50,6 +50,6 @@ The following constants at the top of `wa_hd_upscale.py` can be adjusted before 
 
 ## Notes
 
-- PSD files cannot be written by Pillow; they are saved as TIFF using the same filename.
+- PSD files cannot be written by Pillow, they are saved as TIFF instead.
 - Animated GIFs are processed on the first frame only.
 - The tool will NOT change an image that is already above the target resolution.
