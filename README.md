@@ -1,6 +1,6 @@
 # WhatsApp HD Upscaler
 
-WhatsApp only offers HD quality when the long side of an image is above roughly 1600px. Many photos — especially screenshots, compressed images, or anything resized for web — fall below this and get silently compressed further. This tool brings them all up to 2560px on the long side before you send.
+WhatsApp only offers HD quality when the long side of an image is above roughly 1600px. Many photos, especially screenshots, compressed images, or anything resized for web, fall below this and get silently compressed further. This tool brings them all up to 2560px on the long side so it can be uploaded at a higher resolution by upscaling to whatsapp HD threshold.
 
 Download the prebuilt exe: [here](https://github.com/Ross0907/WhatsApp-HD-image-converter/releases/download/v1/wa_hd_upscale.exe)
 
