@@ -4,8 +4,9 @@ A portable Windows utility that upscales images to meet WhatsApp's HD sending th
 
 WhatsApp only offers HD quality when the long side of an image is above roughly 1600px. Many photos — especially screenshots, compressed images, or anything resized for web — fall below this and get silently compressed further. This tool brings them all up to 2560px on the long side before you send.
 
+Download the prebuilt exe: [here](https://github.com/Ross0907/WhatsApp-HD-image-converter/releases/download/v1/wa_hd_upscale.exe)
 
-## How it works
+## Usage
 
 Drop `wa_hd_upscale.exe` into any folder containing images and double-click it. It will scan the folder, upscale anything below the threshold, and save each file back to its original format and extension. A copy of every original is preserved in a `wa_originals` subfolder before any changes are made.
 
