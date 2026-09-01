@@ -1,4 +1,9 @@
 /test/*
 /RELEASE_NOTES.txt
 /wa_hd_upscale.exe
-/.gitignore
+/wa_hd_upscale_silent.exe
+/wa_hd_upscale.log
+/build/
+/dist/
+/*.spec
+__pycache__/
