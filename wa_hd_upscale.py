@@ -277,6 +277,8 @@ def upscale_image(src: Path, target_long_side: int) -> Result:
             new_w = max(1, round(w * scale))
             new_h = max(1, round(h * scale))
 
+            metadata = metadata_kwargs(img, save_format)
+
             # LANCZOS costs a little more CPU than bicubic but produces a better
             # general-purpose photographic upscale.
             img = img.resize((new_w, new_h), Image.Resampling.LANCZOS)
@@ -285,7 +287,6 @@ def upscale_image(src: Path, target_long_side: int) -> Result:
                 img = img.filter(ImageFilter.UnsharpMask(radius=1.0, percent=80, threshold=3))
 
             img = convert_mode(img, target_mode)
-            metadata = metadata_kwargs(img, save_format)
             save_kwargs = dict(base_save_kwargs)
             save_kwargs.update(metadata)
 
