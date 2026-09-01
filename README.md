@@ -9,6 +9,8 @@ Two builds are supported:
 - `wa_hd_upscale.exe` — shows console progress and **exits automatically as soon as processing finishes**.
 - `wa_hd_upscale_silent.exe` — **no console/window**. It runs silently, exits when finished, and writes `wa_hd_upscale.log` beside the executable.
 
+Download the prebuilt exe: [here](https://github.com/Ross0907/WhatsApp-HD-image-converter/releases/tag/v1.1)
+
 ### Normal use
 
 Put either executable in the folder containing the images and double-click it.
@@ -17,21 +19,7 @@ You can also drag image files or folders onto the executable. Folder arguments a
 
 Every image that is changed gets an original copy in a `wa_originals` folder beside that image. An existing backup is never overwritten.
 
-## Improvements over the original version
-
-- Automatic exit; no final `Press Enter` prompt.
-- Separate no-window/silent Windows build.
-- Higher-quality LANCZOS resizing instead of bicubic.
-- Atomic writes: the converted image is written and verified in a temporary file before replacing the source.
-- Backups are never overwritten on later runs.
-- EXIF orientation is applied correctly before resize.
-- ICC/EXIF/DPI metadata is retained where the output encoder supports it.
-- Multi-frame GIF/TIFF/APNG-style inputs are skipped instead of silently discarding all but the first frame.
-- Read-only/unsafe rewrites such as PSD -> TIFF data with a `.psd` extension are no longer performed.
-- Files/folders can be supplied on the command line or via Windows drag-and-drop.
-- Optional recursive scanning and custom target size.
-
-## Supported rewrite formats
+## Supported formats
 
 JPEG/JFIF, PNG, single-frame GIF, BMP/DIB, single-frame TIFF, WebP, TGA, PPM/PGM/PBM/PNM, SGI/RGB, PCX, and AVIF when the installed Pillow build provides an AVIF writer.
 
