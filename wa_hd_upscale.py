@@ -245,8 +245,12 @@ def upscale_image(src: Path, target_long_side: int) -> Result:
     save_format, target_mode, base_save_kwargs = mapping
 
     # Make sure the current Pillow build actually has the required writer.
-    Image.init()
-    if save_format not in Image.SAVE:
+    save_formats = getattr(upscale_image, "_save_formats", None)
+    if save_formats is None:
+        Image.init()
+        save_formats = set(Image.SAVE)
+        setattr(upscale_image, "_save_formats", save_formats)
+    if save_format not in save_formats:
         return Result("SKIP", f"this Pillow build cannot write {save_format}")
 
     try:
