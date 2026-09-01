@@ -1,0 +1,30 @@
+name: Build Windows executables
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install build dependencies
+        run: python -m pip install --upgrade pillow pyinstaller
+      - name: Build console EXE
+        run: python -m PyInstaller --noconfirm --clean --onefile --console --name wa_hd_upscale wa_hd_upscale.py
+      - name: Build silent EXE
+        run: python -m PyInstaller --noconfirm --clean --onefile --noconsole --name wa_hd_upscale_silent wa_hd_upscale.py
+      - name: Upload executables
+        uses: actions/upload-artifact@v4
+        with:
+          name: WhatsApp-HD-image-converter-windows
+          path: |
+            dist/wa_hd_upscale.exe
+            dist/wa_hd_upscale_silent.exe
